@@ -28,19 +28,19 @@ class GetOCRUseCase(
         if (model == null) return OCRUiModel.Empty
 
         return OCRUiModel(
-            province = model.province,
-            regency = model.regency,
-            nationalIdentityNumber = model.nationalIdentityNumber,
-            placeAndDateOfBirth = model.placeAndDateOfBirth,
-            gender = model.gender,
-            address = model.address,
-            rtRw = model.rtRw,
-            villageSuburb = model.villageSuburb,
-            district = model.district,
-            religion = model.religion,
-            maritalStatus = model.maritalStatus,
-            occupation = model.occupation,
-            citizenship = model.citizenship,
+            province = model.province.orEmpty(),
+            regency = model.regency.orEmpty(),
+            nationalIdentityNumber = model.nationalIdentityNumber.orEmpty(),
+            placeAndDateOfBirth = model.placeAndDateOfBirth.orEmpty(),
+            gender = model.gender.orEmpty(),
+            address = model.address.orEmpty(),
+            rtRw = model.rtRw.orEmpty(),
+            villageSuburb = model.villageSuburb.orEmpty(),
+            district = model.district.orEmpty(),
+            religion = model.religion.orEmpty(),
+            maritalStatus = model.maritalStatus.orEmpty(),
+            occupation = model.occupation.orEmpty(),
+            citizenship = model.citizenship.orEmpty(),
         )
     }
 }

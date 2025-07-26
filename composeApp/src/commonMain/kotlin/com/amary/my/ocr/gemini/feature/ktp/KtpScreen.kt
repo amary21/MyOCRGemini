@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun KtpScreen(
     onBackPressed: () -> Unit = {},
+    onCapture: (ByteArray) -> Unit = {},
 ) {
     val permissions: Permissions = providePermissions()
     val scope = rememberCoroutineScope()
@@ -108,8 +109,9 @@ fun KtpScreen(
                         scope.launch {
                             when (val result = cameraController.value?.takePicture()) {
                                 is ImageCaptureResult.Success -> {
-                                    val byteString = result.byteArray.decodeToString()
-                                    println("Image Capture Success: $byteString")
+                                    val byteArray = result.byteArray
+                                    println("Image Capture Success: ${byteArray.decodeToString()}")
+                                    onCapture(byteArray)
                                 }
 
                                 is ImageCaptureResult.Error -> {

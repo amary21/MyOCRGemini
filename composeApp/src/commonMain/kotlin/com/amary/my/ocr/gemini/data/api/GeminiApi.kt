@@ -13,7 +13,7 @@ interface GeminiApi {
 
     companion object Companion {
         private const val MODEL_VERSION = "gemini-2.5-flash"
-        private const val URL = "v1beta/models/$MODEL_VERSION:generateContent?key=XXX"
+        private const val URL = "v1beta/models/$MODEL_VERSION:generateContent"
 
         private suspend fun apiKey(): String {
             return Res.readBytes("files/goog_api_key.txt").decodeToString()
