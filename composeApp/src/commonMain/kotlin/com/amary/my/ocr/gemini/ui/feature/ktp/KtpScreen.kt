@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.amary.my.ocr.gemini.ui.component.button.ButtonCamera
+import com.amary.my.ocr.gemini.ui.component.button.ButtonFlash
 import com.amary.my.ocr.gemini.ui.component.dialog.ErrorDialog
 import com.amary.my.ocr.gemini.ui.component.dialog.InfoDialog
 import com.amary.my.ocr.gemini.ui.component.dialog.ProgressDialog
@@ -51,7 +52,6 @@ fun KtpScreen(
 
     Scaffold{
         CameraScreen(
-            paddingValues = it,
             onCapture = onCapture,
         )
 
@@ -60,7 +60,6 @@ fun KtpScreen(
             is KtpState.Loading -> {
                 ProgressDialog(
                     isShowing = true,
-                    message = "Loading..."
                 )
             }
             is KtpState.Success -> {
@@ -83,22 +82,21 @@ fun KtpScreen(
 
 @Composable
 fun CameraScreen(
-    paddingValues: PaddingValues,
     onCapture: (ByteArray) -> Unit = {},
 ) {
-    val cameraController = remember { mutableStateOf<CameraController?>(null) }
     val scope = rememberCoroutineScope()
+    val cameraController = remember { mutableStateOf<CameraController?>(null) }
+    val flashCameraState = remember { mutableStateOf(FlashMode.OFF) }
 
     Box(
         modifier = Modifier
-            .padding(paddingValues)
             .fillMaxSize()
     ) {
         CameraPreview(
             modifier = Modifier.fillMaxSize(),
             cameraConfiguration = {
                 setCameraLens(CameraLens.BACK)
-                setFlashMode(FlashMode.OFF)
+                setFlashMode(flashCameraState.value)
                 setImageFormat(ImageFormat.JPEG)
                 setDirectory(Directory.PICTURES)
             },
@@ -146,27 +144,47 @@ fun CameraScreen(
                 )
             )
 
-            ButtonCamera(
-                onClick = {
-                    scope.launch {
-                        when (val result = cameraController.value?.takePicture()) {
-                            is ImageCaptureResult.Success -> {
-                                val byteArray = result.byteArray
-                                println("Image Capture Success: ${byteArray.decodeToString()}")
-                                onCapture(byteArray)
-                            }
+            Box(modifier = Modifier.fillMaxWidth()) {
+                ButtonCamera(
+                    modifier = Modifier.align(Alignment.Center),
+                    onClick = {
+                        scope.launch {
+                            when (val result = cameraController.value?.takePicture()) {
+                                is ImageCaptureResult.Success -> {
+                                    val byteArray = result.byteArray
+                                    println("Image Capture Success: ${byteArray.decodeToString()}")
+                                    onCapture(byteArray)
+                                }
 
-                            is ImageCaptureResult.Error -> {
-                                println("Image Capture Error: ${result.exception.message}")
-                            }
+                                is ImageCaptureResult.Error -> {
+                                    println("Image Capture Error: ${result.exception.message}")
+                                }
 
-                            null -> {
-                                println("CameraController is null")
+                                null -> {
+                                    println("CameraController is null")
+                                }
                             }
                         }
+                    },
+                )
+
+                ButtonFlash(
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .padding(end = 28.dp),
+                    flashMode = flashCameraState.value,
+                ) {
+                    if (flashCameraState.value == FlashMode.OFF) {
+                        flashCameraState.value = FlashMode.ON
+                        cameraController.value?.setFlashMode(FlashMode.ON)
+
+                        cameraController.value?.stopSession()
+                    } else {
+                        flashCameraState.value = FlashMode.OFF
+                        cameraController.value?.setFlashMode(FlashMode.OFF)
                     }
-                },
-            )
+                }
+            }
         }
     }
 }
