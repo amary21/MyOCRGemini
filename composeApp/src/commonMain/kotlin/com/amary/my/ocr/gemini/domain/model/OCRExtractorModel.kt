@@ -8,6 +8,7 @@ data class OCRExtractorModel(
     @SerialName("provinsi") val province: String?? = null,
     @SerialName("kabupaten") val regency: String? = null,
     @SerialName("nik") val nationalIdentityNumber: String? = null,
+    @SerialName("nama") val name: String? = null,
     @SerialName("tempat_tanggal_lahir") val placeAndDateOfBirth: String? = null,
     @SerialName("jenis_kelamin") val gender: String? = null,
     @SerialName("alamat") val address: String? = null,

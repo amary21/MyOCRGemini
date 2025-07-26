@@ -4,11 +4,10 @@ Extract the following personal information from the attached KTP image and retur
 {
   "provinsi": "",
   "kabupaten": "",
-  "nomor_induk_kependudukan": "",
-  "nama_lengkap": "",
+  "nik": "",
+  "nama": "",
   "tempat_tanggal_lahir": "",
   "jenis_kelamin": "",
-  "golongan_darah": "",
   "alamat": "",
   "rt_rw": "",
   "kelurahan_desa": "",
@@ -17,13 +16,14 @@ Extract the following personal information from the attached KTP image and retur
   "status_perkawinan": "",
   "pekerjaan": "",
   "kewarganegaraan": "",
-  "berlaku_hingga": "",
-  "tanggal_penerbitan": ""
 }
 
 Requirements:
 - Return only the JSON object, no additional explanation or text.
 - Keep the original values as written on the ID, even if they are in uppercase or mixed language.
 - Do not infer or guess; extract only what is clearly visible in the image.
-- The field "berlaku_hingga" and "tanggal_penerbitan" must be in "dd-mm-yyyy" format.
 - If any field is not visible or unreadable, return an empty string ("") for that field.
+- The "jenis_kelamin" field must only be one of the following two values:
+    - "LAKI-LAKI"
+    - "PEREMPUAN"
+    If the gender is not clearly one of these two values, leave the field as an empty string ("").

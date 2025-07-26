@@ -31,6 +31,7 @@ class GetOCRUseCase(
             province = model.province.orEmpty(),
             regency = model.regency.orEmpty(),
             nationalIdentityNumber = model.nationalIdentityNumber.orEmpty(),
+            name = model.name.orEmpty(),
             placeAndDateOfBirth = model.placeAndDateOfBirth.orEmpty(),
             gender = model.gender.orEmpty(),
             address = model.address.orEmpty(),
