@@ -177,8 +177,6 @@ fun CameraScreen(
                     if (flashCameraState.value == FlashMode.OFF) {
                         flashCameraState.value = FlashMode.ON
                         cameraController.value?.setFlashMode(FlashMode.ON)
-
-                        cameraController.value?.stopSession()
                     } else {
                         flashCameraState.value = FlashMode.OFF
                         cameraController.value?.setFlashMode(FlashMode.OFF)
