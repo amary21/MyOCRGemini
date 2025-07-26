@@ -2,8 +2,6 @@ You are an Indonesian ID Card (KTP) information extractor.
 Extract the following personal information from the attached KTP image and return it as a valid JSON object in this exact format:
 
 {
-  "provinsi": "",
-  "kabupaten": "",
   "nik": "",
   "nama": "",
   "tempat_tanggal_lahir": "",
@@ -12,6 +10,8 @@ Extract the following personal information from the attached KTP image and retur
   "rt_rw": "",
   "kelurahan_desa": "",
   "kecamatan": "",
+  "kabupaten": "",
+  "provinsi": "",
   "agama": "",
   "status_perkawinan": "",
   "pekerjaan": "",
