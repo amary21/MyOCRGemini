@@ -1,4 +1,4 @@
-package com.amary.my.ocr.gemini.ui.icon
+package com.amary.my.ocr.gemini.ui.component.icon
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor

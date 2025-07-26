@@ -1,4 +1,4 @@
-package com.amary.my.ocr.gemini.feature.home
+package com.amary.my.ocr.gemini.ui.feature.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

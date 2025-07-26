@@ -13,15 +13,22 @@ class GetOCRUseCase(
     private val geminiRepository: GeminiRepository,
     private val promptRepository: PromptRepository
 ) {
-    suspend operator fun invoke(image: ByteArray): OCRUiModel? {
+    suspend operator fun invoke(image: ByteArray): Result<OCRUiModel> {
         val prompt = promptRepository.prompt(PromptFile.TextRecognizeExtractor)
 
-        return geminiRepository
-            .request(prompt, image)
-            .map { it.cleanUp() }
-            .map{ Json.decodeFromString<OCRExtractorModel?>(it) }
-            .map(::transformToUiModel)
-            .getOrNull()
+        return try {
+            geminiRepository
+                .request(prompt, image)
+                .map { it.cleanUp() }
+                .map { Json.decodeFromString<OCRExtractorModel?>(it) }
+                .map(::transformToUiModel)
+                .mapCatching {
+                    if (it == OCRUiModel.Empty) throw Exception("data not found")
+                    it
+                }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 
     private fun transformToUiModel(model: OCRExtractorModel?): OCRUiModel {

@@ -4,9 +4,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.amary.my.ocr.gemini.feature.home.HomeRoute
-import com.amary.my.ocr.gemini.feature.home.homeScreen
-import com.amary.my.ocr.gemini.feature.ktp.ktpScreen
+import com.amary.my.ocr.gemini.ui.feature.home.HomeRoute
+import com.amary.my.ocr.gemini.ui.feature.home.homeScreen
+import com.amary.my.ocr.gemini.ui.feature.ktp.ktpScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
