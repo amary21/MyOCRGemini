@@ -1,4 +1,4 @@
-package com.amary.my.ocr.gemini.component.icon
+package com.amary.my.ocr.gemini.ui.icon
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType

@@ -1,4 +1,4 @@
-package com.amary.my.ocr.gemini.component.button
+package com.amary.my.ocr.gemini.ui.button
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.amary.my.ocr.gemini.component.icon.CaptureCamera
+import com.amary.my.ocr.gemini.ui.icon.CaptureCamera
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable

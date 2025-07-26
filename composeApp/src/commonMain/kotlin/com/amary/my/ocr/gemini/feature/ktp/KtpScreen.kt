@@ -16,8 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.amary.my.ocr.gemini.component.button.ButtonCamera
-import com.amary.my.ocr.gemini.component.icon.FrameKtp
+import com.amary.my.ocr.gemini.ui.button.ButtonCamera
+import com.amary.my.ocr.gemini.ui.icon.FrameKtp
 import com.kashif.cameraK.controller.CameraController
 import com.kashif.cameraK.enums.CameraLens
 import com.kashif.cameraK.enums.Directory
